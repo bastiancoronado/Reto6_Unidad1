@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 
-public class SerialControllerBinaryProtocol : MonoBehaviour
+public class SerialControllerASCIIProtocol : MonoBehaviour
 {
     [Tooltip("Port name with which the SerialPort object will be created.")]
-    public string portName = "COM8";
+    public string portName = "COM3";
 
     [Tooltip("Baud rate that the serial device is using to transmit data.")]
     public int baudRate = 115200;
@@ -23,9 +23,10 @@ public class SerialControllerBinaryProtocol : MonoBehaviour
              "New messages will be discarded.")]
     public int maxUnreadMessages = 1;
 
+
     // Internal reference to the Thread and the object that runs in it.
     protected Thread thread;
-    protected SerialThreadBinaryProtocol serialThread;
+    protected SerialThreadASCIIProtocol serialThread;
 
 
     // ------------------------------------------------------------------------
@@ -35,7 +36,7 @@ public class SerialControllerBinaryProtocol : MonoBehaviour
     // ------------------------------------------------------------------------
     void OnEnable()
     {
-        serialThread = new SerialThreadBinaryProtocol(portName,
+        serialThread = new SerialThreadASCIIProtocol(portName,
                                                        baudRate,
                                                        reconnectionDelay,
                                                        maxUnreadMessages);
@@ -85,29 +86,34 @@ public class SerialControllerBinaryProtocol : MonoBehaviour
             return;
 
         // Read the next message from the queue
-        byte[] message = ReadSerialMessage();
+        string message = (string)serialThread.ReadMessage();
         if (message == null)
             return;
 
         // Check if the message is plain data or a connect/disconnect event.
-        messageListener.SendMessage("OnMessageArrived", message);
+        if (ReferenceEquals(message, "__Connected__"))
+            messageListener.SendMessage("OnConnectionEvent", true);
+        else if (ReferenceEquals(message, "__Disconnected__"))
+            messageListener.SendMessage("OnConnectionEvent", false);
+        else
+            messageListener.SendMessage("OnMessageArrived", message);
     }
 
     // ------------------------------------------------------------------------
     // Returns a new unread message from the serial device. You only need to
     // call this if you don't provide a message listener.
     // ------------------------------------------------------------------------
-    public byte[] ReadSerialMessage()
+    public string ReadSerialMessage()
     {
         // Read the next message from the queue
-        return (byte[])serialThread.ReadMessage();
+        return (string)serialThread.ReadMessage();
     }
 
     // ------------------------------------------------------------------------
     // Puts a message in the outgoing queue. The thread object will send the
     // message to the serial device when it considers it's appropriate.
     // ------------------------------------------------------------------------
-    public void SendSerialMessage(byte[] message)
+    public void SendSerialMessage(string message)
     {
         serialThread.SendMessage(message);
     }
@@ -122,6 +128,4 @@ public class SerialControllerBinaryProtocol : MonoBehaviour
     {
         this.userDefinedTearDownFunction = userFunction;
     }
-
 }
-

@@ -9,8 +9,6 @@ public class SerialThreadBinaryProtocol : AbstractSerialThread
     // Buffer where a single message must fit
     private byte[] buffer = new byte[1024];
     private int bufferUsed = 0;
-    private string[] readAll = {"Wahit_len", "Wait_packet", "Read_packet", "noise" };
-    private string state;
 
     public SerialThreadBinaryProtocol(string portName,
                                        int baudRate,
