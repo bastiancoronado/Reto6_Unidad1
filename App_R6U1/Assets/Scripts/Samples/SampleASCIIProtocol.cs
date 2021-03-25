@@ -16,7 +16,7 @@ public class SampleASCIIProtocol : MonoBehaviour
 
     float tm_past = 0;
 
-    string msj = "*";
+    string mesj = "*";
 
     void Start()
     {
@@ -36,12 +36,12 @@ public class SampleASCIIProtocol : MonoBehaviour
             case "Wait":
                 if (tm >= tm_past + ColdDown)
                 {
-                    Debug.Log("time: " + tm + "| old_time: " + tm_past);
+                    //Debug.Log("time: " + tm + "| old_time: " + tm_past);
                     state = "Send_message";
                 }
                 break;
             case "Send_message":
-                serialController.SendSerialMessage(msj);
+                serialController.SendSerialMessage(mesj);
                 state = "Recive_message";
                 break;
             case "Recive_message":
@@ -74,7 +74,7 @@ public class SampleASCIIProtocol : MonoBehaviour
         {
             tm_past = tm;
             state = "Wait";
-            msj = Message(message);
+            mesj = Message(message);
         }
     }
 

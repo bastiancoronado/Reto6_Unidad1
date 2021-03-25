@@ -10,17 +10,18 @@ public class SampleBinaryProtocol : MonoBehaviour
     private static float last_tmo = 0;
 
     private static float t = 0;
+
     [Tooltip("Time in seconds.")]
     public float ColdDown = 0.1f;
 
-    // Initialization
+    public int valrote;
+
     void Start()
     {
-        serialController = GameObject.Find("Controller").GetComponent<SerialControllerBinaryProtocol>();
-        
+        serialController = GameObject.Find("Controller").GetComponent<SerialControllerBinaryProtocol>();       
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         t += Time.deltaTime;
@@ -47,6 +48,44 @@ public class SampleBinaryProtocol : MonoBehaviour
         {
             sb.Append(data.ToString("X2") + " ");
         }
-        Debug.Log(sb);
+        //Debug.Log(sb.ToString().Length);
+        valrote = value(sb);
+        //Debug.Log(valrote);
+
     }
+
+    int value(StringBuilder sb)
+    {
+        int v = 2;       
+        switch (sb.ToString().Length)
+        {
+            //quieto
+            case 20://"03 00 01 01 ":
+                v = 2;
+                break;
+            //derecha normal
+            case 26://"05 0F 05 06 07 21 ":
+                v = 0;
+                break;
+            //izquierda normal
+            case 23://"04 EE 09 02 F9 ":
+                v = 4;
+                break;
+            //derecha lento
+            case 29://"06 01 DD 0C 05 06 F5 ":
+                v = 1;
+                break;
+            //izquierda lento
+            case 17://"02 CD CD ":
+                v = 3;
+                break;
+            //default:
+              //  Debug.Log("Nada papi");
+                //break;
+
+        }
+        return v;
+    }
+        
+    
 }

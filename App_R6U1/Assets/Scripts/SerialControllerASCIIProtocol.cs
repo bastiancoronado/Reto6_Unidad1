@@ -5,11 +5,10 @@ using System.Threading;
 
 public class SerialControllerASCIIProtocol : MonoBehaviour
 {
-    [Tooltip("Port name with which the SerialPort object will be created.")]
-    public string portName = "COM3";
 
-    [Tooltip("Baud rate that the serial device is using to transmit data.")]
-    public int baudRate = 115200;
+    string portName = "COM3";
+
+    int baudRate = 115200;
 
     [Tooltip("Reference to an scene object that will receive the events of connection, " +
              "disconnection and the messages from the serial device.")]
@@ -27,7 +26,32 @@ public class SerialControllerASCIIProtocol : MonoBehaviour
     // Internal reference to the Thread and the object that runs in it.
     protected Thread thread;
     protected SerialThreadASCIIProtocol serialThread;
+    public SerialConfigurate SerialCof; 
 
+    //
+    public void BoundRate(int val)
+    {
+        switch (val)
+        {
+            case 0:
+                baudRate = 9600;
+                break;
+            case 1:
+                baudRate = 19200;
+                break;
+            case 2:
+                baudRate = 38400;
+                break;
+            case 3:
+                baudRate = 115200;
+                break;
+        }
+    }
+
+    public void EntradaPuerto(int val)
+    {
+        portName = SerialCof.serialPorts[val];
+    }
 
     // ------------------------------------------------------------------------
     // Invoked whenever the SerialController gameobject is activated.
