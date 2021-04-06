@@ -16,7 +16,7 @@ public class SampleASCIIProtocol : MonoBehaviour
 
     float tm_past = 0;
 
-    string mesj = "*";
+    public string mesj = "*";
 
     void Start()
     {
@@ -45,6 +45,7 @@ public class SampleASCIIProtocol : MonoBehaviour
                 state = "Recive_message";
                 break;
             case "Recive_message":
+                mesj = "*";
                 break;
         }
 
@@ -70,7 +71,7 @@ public class SampleASCIIProtocol : MonoBehaviour
         // 2) Start send data
         //---------------------------------------------------------------------
 
-        if (message == "Fire" || message == "Reload" || message == "Fire&Reload")
+        if (message == "Front" || message == "Back" || message == "Front&Back")
         {
             tm_past = tm;
             state = "Wait";
@@ -83,13 +84,13 @@ public class SampleASCIIProtocol : MonoBehaviour
         string c = "_";
         switch (s)
         {
-            case "Fire":
+            case "Front":
                 c = "f";
                 break;
-            case "Reload":
-                c = "r";
+            case "Back":
+                c = "b";
                 break;
-            case "Fire&Reload":
+            case "Front&Back":
                 c = "&";
                 break;
         }

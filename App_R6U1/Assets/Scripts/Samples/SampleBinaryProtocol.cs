@@ -48,7 +48,6 @@ public class SampleBinaryProtocol : MonoBehaviour
         {
             sb.Append(data.ToString("X2") + " ");
         }
-        //Debug.Log(sb.ToString().Length);
         valrote = value(sb);
         //Debug.Log(valrote);
 

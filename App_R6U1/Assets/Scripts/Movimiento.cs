@@ -22,6 +22,20 @@ public class Movimiento : MonoBehaviour
     void Update()
     {
         int pos = obj_binary.valrote;
+        string dir = obj_ascii.mesj;
+
+        switch (dir)
+        {
+            case "f":
+                transform.Translate(0, 0, 0.1f);
+                break;
+            case "b":
+                transform.Translate(0, 0, -0.1f);
+                break;
+            case "&":
+                transform.Translate(0, 0.2f, 0);
+                break;
+        }
         
         switch (pos)
         {
@@ -44,6 +58,5 @@ public class Movimiento : MonoBehaviour
         rotate = Time.deltaTime * rotSpeed;
         Quaternion rote = Quaternion.Euler(0, rotate, 0);
         rigBox.MoveRotation(rigBox.rotation * rote);
-        Debug.Log(rotSpeed);
     }
 }

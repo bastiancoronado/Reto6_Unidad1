@@ -42,16 +42,16 @@ void task_SerialASCII(){
     switch(state){
       case serialStates::Action:
         if(value > 0){
-          if (value == 2)Serial.println("Fire&Reload");
-          else if (pin_fire.pinValue() == 1)Serial.println("Fire");
-          else Serial.println("Reload");
+          if (value == 2)Serial.println("Front&Back");
+          else if (pin_fire.pinValue() == 1)Serial.println("Front");
+          else Serial.println("Back");
           state = serialStates::Wait;
         }
         break;
       case serialStates::Wait:
         if(Serial.available() > 0){
           char dataRX = (char)Serial.read();        
-          if (dataRX == 'f' || dataRX == 'r' || dataRX == '&')state = serialStates::Action;
+          if (dataRX == 'f' || dataRX == 'b' || dataRX == '&')state = serialStates::Action;
         }
         break;
     }

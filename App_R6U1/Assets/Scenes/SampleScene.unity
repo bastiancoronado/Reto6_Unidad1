@@ -6256,11 +6256,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2030870869425566816, guid: 1041a29630dffb345b2a7c1aff90f9b0, type: 3}
       propertyPath: ColdDown
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2030870869425566816, guid: 1041a29630dffb345b2a7c1aff90f9b0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2030870869425566817, guid: 1041a29630dffb345b2a7c1aff90f9b0, type: 3}
       propertyPath: m_RootOrder
@@ -6379,6 +6379,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Ca\xF1on"
       objectReference: {fileID: 0}
+    - target: {fileID: 2287695665879694188, guid: 72ef713fde7d76b409d5205e2cebdf13, type: 3}
+      propertyPath: m_Mass
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287695665879694188, guid: 72ef713fde7d76b409d5205e2cebdf13, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287695665879694188, guid: 72ef713fde7d76b409d5205e2cebdf13, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72ef713fde7d76b409d5205e2cebdf13, type: 3}
 --- !u!1001 &5634182098161624833
@@ -6402,7 +6414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5634182098002616514, guid: 23eff2954a4e60c46b4887d74642df51, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5634182098002616515, guid: 23eff2954a4e60c46b4887d74642df51, type: 3}
       propertyPath: m_Enabled
