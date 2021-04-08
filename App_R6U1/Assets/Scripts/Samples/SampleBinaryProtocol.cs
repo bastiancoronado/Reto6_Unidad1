@@ -14,7 +14,7 @@ public class SampleBinaryProtocol : MonoBehaviour
     [Tooltip("Time in seconds.")]
     public float ColdDown = 0.1f;
 
-    public int valrote;
+    public int valrote = 2;
 
     void Start()
     {

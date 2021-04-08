@@ -24,7 +24,6 @@ unsigned long last_time = 0;
 
  void loop() {
    task_SerialASCII();
-   //task_serialASCII_reload();
  }
 
 void task_SerialASCII(){

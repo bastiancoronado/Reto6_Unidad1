@@ -9,7 +9,9 @@ public class SerialConfigurate : MonoBehaviour
     public GameObject Control;
     public GameObject obj;
     public GameObject Canvas;
-    public GameObject Canon;
+
+    public GameObject General;
+    public GameObject Player;
 
     string[] boudrate = { "9600",  "19200", "38400", "115200" };
     public Dropdown Por32, PorArd, Bou32, BouArd;
@@ -44,15 +46,17 @@ public class SerialConfigurate : MonoBehaviour
     public void Activar()
     {
         Control.SetActive(true);
-        obj.SetActive(true);     
-        Canon.SetActive(true);
+        obj.SetActive(true);
+        Player.SetActive(true);
+        General.SetActive(false);
     }
 
     public void Desactivar()
     {
         Control.SetActive(false);
         obj.SetActive(false);
-        Canon.SetActive(false);
+        Player.SetActive(false);
+        General.SetActive(true);
     }
 
     public void Window()

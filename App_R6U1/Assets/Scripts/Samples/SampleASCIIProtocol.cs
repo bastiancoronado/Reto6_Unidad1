@@ -64,7 +64,7 @@ public class SampleASCIIProtocol : MonoBehaviour
         else if (ReferenceEquals(message, "__Disconnected__"))
             Debug.Log("Connection attempt failed or disconnection detected");
         else
-            Debug.Log("Message arrived: " + message);
+            //Debug.Log("Message arrived: " + message);
 
 
         //---------------------------------------------------------------------
